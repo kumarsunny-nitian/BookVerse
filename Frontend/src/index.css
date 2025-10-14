@@ -1,6 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Poppins:wght@400;500&display=swap');
 @import "tailwindcss";
 
-body{
-  font-family: "Poppins", sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Poppins:wght@400;500&display=swap");
+
+@layer base {
+  body {
+    font-family: "Poppins", sans-serif;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    background-color: white;
+    color: black;
+  }
+
+  /* ✅ Dark theme */
+  html.dark body {
+    background-color: #0f172a; /* deep blue-gray like your screenshot */
+    color: white;
+  }
 }

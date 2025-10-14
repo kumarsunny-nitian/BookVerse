@@ -38,8 +38,8 @@ function Banner() {
           </div>
 
           {/* ✅ Rectangular + hover scale effect */}
-          <button className="btn mt-6 bg-pink-600 text-white hover:bg-pink-800 transform hover:scale-125 transition-transform duration-300">
-            Secondary
+          <button className="btn mt-6 bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-600 text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:shadow-2xl transform hover:scale-110 transition-all duration-300">
+             Get Started
           </button>
         </div>
 

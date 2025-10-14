@@ -1,24 +1,48 @@
 import React, { useEffect, useState } from "react";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+
+import axios from "axios";
+
 import Cards from "./Cards";
 
 function Freebook() {
+  const [book, setBook] = useState([]);
+
+  useEffect(() => {
+    const getBook = async () => {
+      try {
+        const res = await axios.get("http://localhost:4001/book");
+        const data = res.data.filter((data) => data.category === "Free");
+        console.log(res.data);
+        setBook(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getBook();
+  }, []);
+
   const [list, setList] = useState([]);
-  const [reRender, setReRender] = useState(false); // ✅ new state to re-render
+  const [reRender, setReRender] = useState(false);
 
   useEffect(() => {
     fetch("/list.json")
-      .then((res) => res.json())
+      .then((res) => {
+        // ✅ Essential fix: check if response is JSON before parsing
+        if (!res.ok) throw new Error(`Failed to load list.json (${res.status})`);
+        return res.json();
+      })
       .then((data) => {
         setList(data);
-        setTimeout(() => setReRender(true), 100); // ✅ re-render fix
+        setTimeout(() => setReRender(true), 100);
       })
-      .catch((err) => console.error("Error loading JSON:", err));
+      .catch((err) => console.error("Error loading JSON:", err.message));
   }, []);
 
-  const filterData = list.filter((data) => data.category === "Free");
+  const filterData = book.filter((data) => data.category === "Free");
 
   const settings = {
     dots: true,
@@ -47,7 +71,7 @@ function Freebook() {
         {filterData.length > 0 ? (
           <Slider key={reRender} {...settings}>
             {filterData.map((item) => (
-              <div key={item.id} className="px-3">
+              <div key={item._id} className="px-3">
                 <Cards item={item} />
               </div>
             ))}
