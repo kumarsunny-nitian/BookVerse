@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Navigate, Route } from "react-router-dom";
 import Home from "./Home/Home";
-import Courses from "./Courses/Courses";
+import Courses from "./courses/Courses";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import { Toaster } from "react-hot-toast";
