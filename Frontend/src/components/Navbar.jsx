@@ -60,7 +60,7 @@ function Navbar() {
 
   return (
     <div className="flex justify-between items-center px-10 py-4 shadow-md bg-base-100 dark:bg-gray-900 dark:text-white sticky top-0 z-50 transition">
-      <h1 className="text-3xl font-bold text-primary cursor-pointer">bookStore</h1>
+      <h1 className="text-3xl font-bold text-primary cursor-pointer">BookVerse</h1>
 
       <ul className="hidden md:flex items-center gap-8 text-lg font-medium">
         <li>
