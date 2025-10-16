@@ -1,48 +1,26 @@
 import React, { useEffect, useState } from "react";
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-
 import axios from "axios";
-
 import Cards from "./Cards";
 
 function Freebook() {
-  const [book, setBook] = useState([]);
+  const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    const getBook = async () => {
+    const getBooks = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/book`);
-        const data = res.data.filter((data) => data.category === "Free");
-        console.log(res.data);
-        setBook(data);
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/book`);
+        const freeBooks = res.data.filter((item) => item.category === "Free");
+        console.log(freeBooks);
+        setBooks(freeBooks);
       } catch (error) {
-        console.log(error);
+        console.error("Error fetching books:", error);
       }
     };
-    getBook();
+    getBooks();
   }, []);
-
-  const [list, setList] = useState([]);
-  const [reRender, setReRender] = useState(false);
-
-  useEffect(() => {
-    fetch("/list.json")
-      .then((res) => {
-        // ✅ Essential fix: check if response is JSON before parsing
-        if (!res.ok) throw new Error(`Failed to load list.json (${res.status})`);
-        return res.json();
-      })
-      .then((data) => {
-        setList(data);
-        setTimeout(() => setReRender(true), 100);
-      })
-      .catch((err) => console.error("Error loading JSON:", err.message));
-  }, []);
-
-  const filterData = book.filter((data) => data.category === "Free");
 
   const settings = {
     dots: true,
@@ -68,9 +46,9 @@ function Freebook() {
       </div>
 
       <div className="slider-container">
-        {filterData.length > 0 ? (
-          <Slider key={reRender} {...settings}>
-            {filterData.map((item) => (
+        {books.length > 0 ? (
+          <Slider {...settings}>
+            {books.map((item) => (
               <div key={item._id} className="px-3">
                 <Cards item={item} />
               </div>
