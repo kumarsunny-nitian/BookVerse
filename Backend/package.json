@@ -1,29 +1,33 @@
 {
   "name": "bookstore",
   "version": "1.0.0",
-  "description": "mern project",
+  "description": "MERN project backend for BookVerse",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "build": "echo 'No build step required for backend' && exit 0",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kumarsunny-nitian/bookStoreApp.git"
+    "url": "git+https://github.com/kumarsunny-nitian/BookVerse.git"
   },
   "author": "Sunny",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kumarsunny-nitian/bookStoreApp/issues"
+    "url": "https://github.com/kumarsunny-nitian/BookVerse/issues"
   },
-  "homepage": "https://github.com/kumarsunny-nitian/bookStoreApp#readme",
+  "homepage": "https://github.com/kumarsunny-nitian/BookVerse#readme",
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
-    "dotenv": "^17.2.3",
-    "express": "^5.1.0",
-    "mongoose": "^8.19.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "mongoose": "^8.6.2"
+  },
+  "devDependencies": {
     "nodemon": "^3.1.10"
   }
 }
